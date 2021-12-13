@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import GlobalStyle from "./theme/GlobalStyle";
 //Components
-import Layout from "./components/Layout";
 import Shows from "./components/Shows";
 import { Routes, Route } from "react-router-dom";
 import ShowItem from "./templates/ShowItem";
@@ -15,6 +14,7 @@ const App = () => {
       user.name = userName;
       user.email = userEmail;
     }
+    //eslint-disable-next-line
   }, []);
   return (
     <>

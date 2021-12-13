@@ -34,7 +34,7 @@ const MovieIcon = styled(BiCameraMovie)``;
 const WebTitle = styled(Link)`
   color: rgba(var(--milkWhite));
   font-size: 2em;
-  font-family: "Cedarville Cursive", cursive;
+  font-family: "Josefin Sans", sans-serif;
   display: flex;
   align-items: center;
   gap: 0.5rem;

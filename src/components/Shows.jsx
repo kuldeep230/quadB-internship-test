@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ShowContext from "../Context/ShowsContext/ShowsContext";
@@ -8,7 +8,7 @@ import Spinner from "./Spinner";
 
 const Shows = ({ user }) => {
   const context = useContext(ShowContext);
-  const { shows, getAllShows, getShow, show, loading } = context;
+  const { shows, getAllShows, loading } = context;
   useEffect(() => {
     getAllShows();
     // eslint-disable-next-line
@@ -30,8 +30,8 @@ const Shows = ({ user }) => {
           <Spinner />
         ) : (
           <ShowsContentWrapper>
-            {shows.map((item) => (
-              <div className="show-container">
+            {shows.map((item, index) => (
+              <div className="show-container" key={index}>
                 <Link to={`/shows/${item.show?.id}`}>
                   <div className="img-content">
                     <ShowImg
@@ -50,8 +50,8 @@ const Shows = ({ user }) => {
                         </p>
                       </Ratings>
                       <Genres>
-                        {item.show?.genres.map((item) => (
-                          <p> {`${item}`} </p>
+                        {item.show?.genres.map((item, index) => (
+                          <p key={index}> {`${item}`} </p>
                         ))}
                       </Genres>
                       <Button>View Details</Button>
@@ -92,6 +92,20 @@ const ShowsContentWrapper = styled.div`
   grid-template-columns: repeat(5, 1fr);
   gap: 2em;
   margin: 1rem;
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @media screen and (min-width: 641px) and (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 769px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
   .show-container {
     overflow: hidden;
   }

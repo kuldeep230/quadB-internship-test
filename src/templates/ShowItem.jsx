@@ -43,8 +43,8 @@ const ShowItem = () => {
                   <ShowItemTitle>{show?.name}</ShowItemTitle>
                   <ShowItemYear>{`(${show?.premiered})`}</ShowItemYear>
                   <ShowItemGenres>
-                    {show.genres?.map((item) => (
-                      <p>{item}</p>
+                    {show.genres?.map((item, index) => (
+                      <p key={index}>{item}</p>
                     ))}
                   </ShowItemGenres>
                   <ShowItemSchedule>
@@ -52,8 +52,8 @@ const ShowItem = () => {
                     <p>
                       Time: {show.schedule?.time ? show.schedule?.time : "N/A"}
                     </p>
-                    {show.schedule?.days.map((item) => (
-                      <p> {item} </p>
+                    {show.schedule?.days.map((item, index) => (
+                      <p key={index}> {item} </p>
                     ))}
                   </ShowItemSchedule>
                   <Ratings>
@@ -116,6 +116,10 @@ const ShowItemContentWrapper = styled.div`
   margin: 2em 0;
   display: flex;
   gap: 3em;
+  @media screen and (max-width: 980px) {
+    flex-direction: column;
+    justify-content: center;
+  }
   /* border: 1px solid red; */
 `;
 
@@ -128,10 +132,19 @@ const ShowItemLeftSec = styled.section`
   justify-content: flex-start;
   align-items: center;
   text-align: center;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
   .showItem-img {
     width: 80%;
     height: 80%;
     overflow: hidden;
+    margin-top: 1em;
+    @media screen and (max-width: 980px) {
+      width: 100%;
+      height: 100%;
+    }
   }
   .showItem-book-ticket {
     width: 100%;
@@ -216,7 +229,7 @@ const Button = styled.button`
   color: rgba(var(--milkWhite));
   font-size: 1.1em;
   font-weight: 600;
-  width: calc(100% - 8em);
+  width: calc(100% - 7.5em);
   outline: 1px solid rgba(var(--cherryRed));
 `;
 

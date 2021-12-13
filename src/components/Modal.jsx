@@ -65,7 +65,7 @@ const Modal = (props) => {
             </ShowTitle>
             <ShowGenres>
               {show?.genres.map((item) => (
-                <Genres>{item}</Genres>
+                <Genres key={show.id}>{item}</Genres>
               ))}
             </ShowGenres>
             <ShowRating>
